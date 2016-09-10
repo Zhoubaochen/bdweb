@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <base href="<%=basePath%>" /> 
+         <title>中国银行用户画像系统</title>
+         <!-- Bootstrap -->
+    <link href="js/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery/jquery-3.1.0.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <style>
+     body{
+		background-color:#CCFFFF;
+	}
+	h1{
+		margin-bottom:30px;
+	}
+    </style>
+      
+    </head>
+    <body>
+    <div class="container"> 
+
+    <div class="row" > 
+        <div class="col-lg-6 col-lg-offset-4"> 
+            <h1>中国银行用户画像系统</h1>
+        </div> 
+    </div> 
+</div>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    	<div id="main" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+        		backgroundColor: '#168',
+        		tooltip : {
+        	        formatter: "{a} <br/>{b} : {c}"
+        	    },
+        	    toolbox: {
+        	        feature: {
+        	            restore: {},
+        	            saveAsImage: {}
+        	        }
+        	    },
+        	    series: [
+        	        {
+        	            name: '个人信用',
+        	            type: 'gauge',
+        	            z: 3,
+        	            min: 350,
+        	            max: 950,
+        	            splitNumber: 12,
+        	            startAngle: 200,//起始度
+        	            endAngle: -20,//结束度
+        	            center: ['50%', '50%'],    // 默认全局居中
+        	            radius: '80%',//仪表盘半径
+        	            axisLine: {            // 坐标轴线
+        	                lineStyle: {       // 属性lineStyle控制线条样式
+        	                	color: [[0.167, '#FF6600'],[0.33, '#CC9933'],[0.667, '#CC00CC'],[0.83, '#9900FF'],[1, '#99FF66']],//颜色占比
+        	                    width: 10
+        	                }
+        	            },
+        	            axisTick: {            // 坐标轴小标记
+        	                length: 15,        // 属性length控制线长
+        	                lineStyle: {       // 属性lineStyle控制线条样式
+        	                    color: 'auto'
+        	                }
+        	            },
+        	            axisLabel: {
+        	                formatter:function(v){
+        	                    switch (v + '') {
+        	                        case '400' : return '较差';
+        	                        case '500' : return '中等'
+        	                        case '650' : return '良好';
+        	                        case '800' : return '优秀';
+        	                        case '900' : return '极好';
+        	                        default:return v;
+        	                    }
+        	                }
+        	            },
+        	            splitLine: {           // 分隔线
+        	                length: 20,         // 属性length控制线长
+        	                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+        	                    color: 'auto'
+        	                }
+        	            },
+        	            pointer: {//指针大小
+        	                width:5
+        	            },
+        	            title : {
+        	                offsetCenter: [0, '-50%'],       //相对圆心 x, y，单位px
+        	                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+        	                    fontWeight: 'bolder',
+        	                    fontSize: 15,
+        	                    fontStyle: 'italic',
+        	                    color:'#FFFFCC'
+        	                }
+        	            },
+        	            detail : {
+        	            	offsetCenter: [0, '25%'], 
+        	                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+        	                    fontWeight: 'bolder',
+        	                    fontSize:20,
+        	                    color:'#FFFFCC'
+        	                },
+        	                formatter:function(v){
+        	                    if(v>=750)return v+'\n信用极好';
+        	                    else return v;
+    
+    	                    }
+    	                	
+        	            },
+        	            data:[{value: 750, name: '信用分'}]
+        	        }
+        	    ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>   
+    </body>
+</html>

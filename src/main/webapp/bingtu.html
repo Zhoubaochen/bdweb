@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <base href="<%=basePath%>" /> 
+         <title>中国银行用户画像系统</title>
+         <!-- Bootstrap -->
+    <link href="js/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery/jquery-3.1.0.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <style>
+     body{
+		background-color:#CCFFFF;
+	}
+	h1{
+		margin-bottom:30px;
+	}
+    </style>
+      
+    </head>
+    <body>
+    <div class="container"> 
+
+    <div class="row" > 
+        <div class="col-lg-6 col-lg-offset-4"> 
+            <h1>中国银行用户画像系统</h1>
+        </div> 
+    </div> 
+</div>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    	<div id="main" style="width: 600px;height:400px;"></div>
+    	<div id="main2" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        var myChart2 = echarts.init(document.getElementById('main2'));
+        // 指定图表的配置项和数据
+        var option = {
+        		backgroundColor: '#168',
+        		 title : {
+        		        text: '资产',
+        		        subtext: '',
+        		        x:'center',
+        		        left: 'center',
+        		        //top: 20,
+        		        textStyle: {
+        		            color: '#ccc'
+        		        }
+        		    },
+        		    tooltip : {
+        		        trigger: 'item',
+        		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+        		    },
+        		    legend: {
+        		        orient: 'horizontal',
+        		        left: 'left',
+        		        //top: 40,
+        		        //x : 'center',
+        		        y : 'bottom',
+        		        data: ['活期','定期','股票','基金','国债','理财'],
+   
+        		    },
+        		    series : [
+        		        {
+        		            name: '资产',
+        		            type: 'pie',
+        		            radius: ['0%', '60%'],//半径范围
+        		            center: ['50%', '50%'],
+        		            //roseType : 'area','radius'//南丁格尔玫瑰模式
+        		            data:[
+        		                {value:335, name:'活期'},
+        		                {value:335, name:'定期'},
+        		                {value:310, name:'股票'},
+        		                {value:234, name:'基金'},
+        		                {value:135, name:'国债'},
+        		                {value:1548, name:'理财'}
+        		            ],
+        		            label: {
+        		                normal: {
+        		                    textStyle: {
+        		                    	//fontSize: 18,
+        		                        color: 'rgba(255, 255, 255, 1)'
+        		                    }
+        		                }
+        		            },
+        		            labelLine: {
+        		                normal: {
+        		                    lineStyle: {
+        		                        color: 'rgba(255, 255, 255, 1)'
+        		                    },
+        		                    //smooth: 0.2,
+        		                    //length: 10,
+        		                    //length2: 20
+        		                }
+        		            },
+        		            itemStyle: {
+        		                emphasis: {
+        		                    shadowBlur: 10,
+        		                    shadowOffsetX: 0,
+        		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+        		                },
+        		                //opacity: 0.4,
+        		                //borderWidth: 13,
+        		                //borderColor: '#235894'
+        		            }
+        		        }
+        		    ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        var option2 = {
+        		backgroundColor: '#168',
+        		 title : {
+        		        text: '资金流动',
+        		        subtext: '',
+        		        x:'center',
+        		        left: 'center',
+        		        //top: 20,
+        		        textStyle: {
+        		            color: '#ccc'
+        		        }
+        		    },
+        		    tooltip : {
+        		        trigger: 'item',
+        		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+        		    },
+        		    legend: {
+        		        orient: 'horizontal',
+        		        left: 'left',
+        		        //top: 40,
+        		        //x : 'center',
+        		        y : 'bottom',
+        		        data: ['行内转入','行内转出','行外转入','行外转出'],
+   
+        		    },
+        		    series : [
+        		        {
+        		            name: '资金流动',
+        		            type: 'pie',
+        		            radius: ['30%', '60%'],//半径范围
+        		            center: ['50%', '50%'],
+        		            avoidLabelOverlap: false,
+        		            data:[
+        		                {value:335, name:'行内转入'},
+        		                {value:335, name:'行内转出'},
+        		                {value:310, name:'行外转入'},
+        		                {value:234, name:'行外转出'}
+
+        		            ],
+        		            label: {
+        		            	normal: {
+        		                    show: false,
+        		                    position: 'center'
+        		                },
+        		                emphasis: {
+        		                    show: true,
+        		                    textStyle: {
+        		                        fontSize: '30',
+        		                        fontWeight: 'bold'
+        		                    }
+        		                }
+        		                
+        		            },
+        		            labelLine: {
+        		            	 normal: {
+        		                     show: false
+        		                 }
+        		            },
+        		            itemStyle: {
+        		                emphasis: {
+        		                    shadowBlur: 10,
+        		                    shadowOffsetX: 0,
+        		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+        		                },
+        		                //opacity: 0.4,
+        		                //borderWidth: 13,
+        		                //borderColor: '#235894'
+        		            }
+        		        }
+        		    ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart2.setOption(option2);
+    </script>   
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <base href="<%=basePath%>" /> 
+         <title>中国银行用户画像系统</title>
+         <!-- Bootstrap -->
+    <link href="js/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="js/jqcloud/jqcloud.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery/jquery-3.1.0.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script src="js/jqcloud/jqcloud-1.0.4.js"></script>
+    <style>
+     body{
+		background-color:#CCFFFF;
+	}
+	h1{
+		margin-bottom:30px;
+	}
+    </style>
+      <script type="text/javascript">
+      /*!
+       * Create an array of word objects, each representing a word in the cloud
+       */
+      var word_array = [
+          {text: "Lorem", weight: 15},
+          {text: "Ipsum", weight: 9, link: "http://jquery.com/"},
+          {text: "Dolor", weight: 6, html: {title: "I can haz any html attribute"}},
+          {text: "Sit", weight: 7},
+          {text: "Amet", weight: 5}
+          // ...as many words as you want
+      ];
+
+      $(function() {
+        // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
+        $("#example").jQCloud(word_array);
+      });
+    </script>
+    </head>
+    <body>
+    <div class="container"> 
+
+    <div class="row" > 
+        <div class="col-lg-6 col-lg-offset-4"> 
+            <h1>中国银行用户画像系统</h1>
+        </div> 
+    </div> 
+</div>
+<div id="example" style="width: 550px; height: 350px;"></div>
+    </body>
+</html>
